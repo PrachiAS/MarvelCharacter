@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_12">12dp</dimen>
@@ -9,5 +10,6 @@
     <dimen name="margin_0">0dp</dimen>
     <dimen name="card_elevation_4dp">4dp</dimen>
     <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
     <dimen name="margin_8">8dp</dimen>
 </resources>

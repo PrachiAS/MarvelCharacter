@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelcharacters.R
 import com.globant.marvelcharacters.databinding.FragmentDetailsBinding
 import com.globant.marvelcharacters.model.CharacterInfoModel
+import com.globant.marvelcharacters.ui.details.adapter.ComicListAdapter
+import com.globant.marvelcharacters.ui.home.adapter.MarvelCharacterListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +21,12 @@ class DetailsFragment : Fragment() {
     private var infoModel: CharacterInfoModel? = null
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel by viewModels<DetailsViewModel>()
+    private lateinit var adapter: ComicListAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = ComicListAdapter()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +37,9 @@ class DetailsFragment : Fragment() {
         with(binding) {
             lifecycleOwner = this@DetailsFragment
             viewModel = this.viewModel
+            recyclerViewComicList.adapter = adapter
+            recyclerViewComicList.layoutManager =
+                LinearLayoutManager(recyclerViewComicList.context)
         }
         return binding.root
     }
@@ -41,6 +52,7 @@ class DetailsFragment : Fragment() {
         viewModel.init(infoModel)
         viewModel.characterDetailsModelLiveData.observe(viewLifecycleOwner){
             binding.characterDetails = it
+            adapter.setList(it?.comicNames)
         }
     }
     companion object {

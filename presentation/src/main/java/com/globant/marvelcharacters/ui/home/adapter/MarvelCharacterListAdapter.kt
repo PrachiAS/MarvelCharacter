@@ -10,11 +10,11 @@ import com.globant.marvelcharacters.R
 class MarvelCharacterListAdapter(
     private val onClickListener: (position: Int) -> Unit
 ) :
-    RecyclerView.Adapter<MarvelCharacterListAdapter.MarvelCharacterListViewHolder>() {
+    RecyclerView.Adapter<MarvelCharacterListAdapter.MarvelCharacterNameViewHolder>() {
 
     private var characterNameList: List<String>? = emptyList()
 
-    class MarvelCharacterListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MarvelCharacterNameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.textViewName)
     }
 
@@ -23,13 +23,13 @@ class MarvelCharacterListAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelCharacterListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelCharacterNameViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_marvel_character_list_view, parent, false)
-        return MarvelCharacterListViewHolder(view)
+        return MarvelCharacterNameViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MarvelCharacterListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelCharacterNameViewHolder, position: Int) {
         holder.textView.text = characterNameList?.get(position) ?: ""
         holder.textView.setOnClickListener {
             onClickListener.invoke(holder.bindingAdapterPosition)

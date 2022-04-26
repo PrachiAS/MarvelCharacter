@@ -6,6 +6,7 @@
         <entry key="../../Library/Android/sdk/platforms/android-32/data/res/drawable/ic_lock_idle_alarm.xml" value="0.1" />
         <entry key="presentation/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="presentation/src/main/res/layout/activity_main.xml" value="0.1651376146788991" />
+        <entry key="presentation/src/main/res/layout/comic_name_list_row.xml" value="0.2056159420289855" />
         <entry key="presentation/src/main/res/layout/fragment_details.xml" value="0.1" />
         <entry key="presentation/src/main/res/layout/fragment_details_o.xml" value="0.19746376811594202" />
         <entry key="presentation/src/main/res/layout/fragment_home.xml" value="0.2140625" />

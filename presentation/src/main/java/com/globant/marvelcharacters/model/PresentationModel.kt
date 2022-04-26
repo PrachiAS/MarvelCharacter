@@ -24,7 +24,7 @@ data class CharacterDetailsModel(
     val thumbnailUrl: String? = "",
     val description: String? = "",
     val availableComics: String? = "",
-    val comicNames: List<String>? = arrayListOf<String>("NA","NA","NA"),
+    val comicNames: List<String>? = ArrayList<String>(),
     val availableSeries: String? = "",
     val availableStories: String? = "",
     val availableEvents: String? = "",
