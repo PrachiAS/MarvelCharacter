@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MarvelCharacters</string>
+    <string name="name">Name: </string>
+    <string name="description">Description: </string>
+    <string name="available_comics">Available Comics: </string>
+    <string name="available_series">Available Series: </string>
+    <string name="available_stories">Available Stories: </string>
+    <string name="available_events">Available Events: </string>
+    <string name="comic_names">Few Comic Names: </string>
+
 </resources>
