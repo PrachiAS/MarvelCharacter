@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.globant.marvelcharacters.R
 
-class SearchResultAdapter(
+class MarvelCharacterListAdapter(
     private val onClickListener: (position: Int) -> Unit
 ) :
-    RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
+    RecyclerView.Adapter<MarvelCharacterListAdapter.MarvelCharacterListViewHolder>() {
 
     private var characterNameList: List<String>? = emptyList()
 
-    class SearchResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MarvelCharacterListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.textViewName)
     }
 
@@ -23,13 +23,13 @@ class SearchResultAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelCharacterListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_marvel_character_list_view, parent, false)
-        return SearchResultViewHolder(view)
+        return MarvelCharacterListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelCharacterListViewHolder, position: Int) {
         holder.textView.text = characterNameList?.get(position) ?: ""
         holder.textView.setOnClickListener {
             onClickListener.invoke(holder.bindingAdapterPosition)

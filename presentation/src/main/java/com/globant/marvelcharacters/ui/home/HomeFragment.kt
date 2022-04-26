@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelcharacters.R
 import com.globant.marvelcharacters.databinding.FragmentHomeBinding
-import com.globant.marvelcharacters.ui.home.adapter.SearchResultAdapter
+import com.globant.marvelcharacters.ui.home.adapter.MarvelCharacterListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var adapter: SearchResultAdapter
+    private lateinit var adapter: MarvelCharacterListAdapter
     var bundle: Bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         val onItemClickListener: (position: Int) -> Unit = {
             viewModel.onListItemClickListener(it)
         }
-        adapter = SearchResultAdapter(onItemClickListener)
+        adapter = MarvelCharacterListAdapter(onItemClickListener)
         with(viewModel) {
             characterNameList.observe(this@HomeFragment, {
                 adapter.setList(it.characterNamesList)
