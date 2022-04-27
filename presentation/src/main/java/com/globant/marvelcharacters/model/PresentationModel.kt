@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CharacterInfoModel(
+    val id: Int,
     val name: String?,
     val thumbnailUrl: String?,
     val description: String?,

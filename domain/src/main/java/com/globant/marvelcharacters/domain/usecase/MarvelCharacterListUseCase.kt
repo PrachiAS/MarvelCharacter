@@ -11,7 +11,7 @@ class MarvelCharacterListUseCase @Inject constructor(private val repository: Mar
     class MarvelCharacterListRequest() : Request
 
     class MarvelCharacterListResponse(
-        val characterModel: List<Pair<MarvelCharacterNameModel, MarvelCharacterDetails>>?,
+        val characterModel: List<MarvelCharacterNameModel>?,
         val error: Boolean = false
     ) : Response
 

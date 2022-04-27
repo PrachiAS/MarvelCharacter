@@ -12,9 +12,10 @@
         <variable
             name="viewModel"
             type="com.globant.marvelcharacters.ui.details.DetailsViewModel" />
+
         <variable
             name="characterDetails"
-            type="com.globant.marvelcharacters.model.CharacterDetailsModel" />
+            type="com.globant.marvelcharacters.domain.model.MarvelCharacterDetails" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

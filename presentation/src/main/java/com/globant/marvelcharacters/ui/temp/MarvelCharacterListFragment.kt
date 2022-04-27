@@ -1,4 +1,4 @@
-package com.globant.marvelcharacters.ui.home
+package com.globant.marvelcharacters.ui.temp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,28 +15,29 @@ import com.globant.marvelcharacters.ui.home.adapter.MarvelCharacterListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class MarvelCharacterListFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<MarvelCharacterListViewModel>()
     private lateinit var adapter: MarvelCharacterListAdapter
     var bundle: Bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+      //  viewModel = ViewModelProvider(this).get(MarvelCharacterListViewModel::class.java)
+
         val onItemClickListener: (position: Int) -> Unit = {
             viewModel.onListItemClickListener(it)
         }
         adapter = MarvelCharacterListAdapter(onItemClickListener)
         with(viewModel) {
-            characterNameList.observe(this@HomeFragment, {
-                adapter.setList(it)
+            characterNameList.observe(this@MarvelCharacterListFragment, {
+                adapter.setList(it.characterNamesList)
             })
-            /*characterDetail.observe(this@HomeFragment, {
+            characterDetail.observe(this@MarvelCharacterListFragment, {
                 bundle.putParcelable(CHARACTER_DETAIL, it)
-                navigateToDetails(it)
-            })*/
+                navigateToDetails(bundle)
+            })
         }
-        viewModel.getMarvelCharacter()
     }
 
     override fun onCreateView(
@@ -47,8 +48,9 @@ class HomeFragment : Fragment() {
             inflater, R.layout.fragment_home, container, false
         )
         with(binding) {
-            lifecycleOwner = this@HomeFragment
-            viewModel = this@HomeFragment.viewModel
+            lifecycleOwner = this@MarvelCharacterListFragment
+           // viewModel = this@MarvelCharacterListFragment.viewModel
+          //  searchViewCharacterSearch.setOnQueryTextListener(viewModel?.queryTextListener)
             recyclerViewCharacterList.adapter = adapter
             recyclerViewCharacterList.layoutManager =
                 LinearLayoutManager(recyclerViewCharacterList.context)
@@ -56,18 +58,10 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter.itemClickListener {
-            findNavController().navigate(
-                HomeFragmentDirections.navigateToDetailsFragment(
-                    it.id.toString()
-                )
-            )
-        }
-    }
     private fun navigateToDetails(bundle: Bundle) {
         findNavController().navigate(
-            HomeFragmentDirections.navigateToDetailsFragment()
+            R.id.navigateToDetailsFragment,
+            bundle
         )
     }
 

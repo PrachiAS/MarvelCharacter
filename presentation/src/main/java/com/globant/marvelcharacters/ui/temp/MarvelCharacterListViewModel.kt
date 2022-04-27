@@ -1,9 +1,9 @@
-package com.globant.marvelcharacters.ui.home
+package com.globant.marvelcharacters.ui.temp
 
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.globant.marvelcharacters.domain.model.MarvelCharacterDetails
-import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 import com.globant.marvelcharacters.model.CharacterInfoModel
 import com.globant.marvelcharacters.model.CharacterListsModel
@@ -13,33 +13,50 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val marvelCharacterListUseCase: MarvelCharacterListUseCase
+class MarvelCharacterListViewModel @Inject constructor(
+   // private val coroutineScopeProvider: CoroutineScope? = null,
+    private val searchCharacterUseCase: MarvelCharacterListUseCase
 ) :
     BaseViewModel() {
-    //arvelCharacterDetails MarvelCharacterNameModel
-    private var characterDetailList: List<MarvelCharacterDetails>? = null
-    //val characterNameList = MutableLiveData<CharacterListsModel>()
-    val characterNameList = MutableLiveData<List<MarvelCharacterNameModel>>()
 
+   // private val coroutineScope = getViewModelScope(coroutineScopeProvider)
+    private var characterDetailList: List<MarvelCharacterDetails>? = null
+    val characterNameList = MutableLiveData<CharacterListsModel>()
     val characterDetail = MutableLiveData<CharacterInfoModel>()
 
-    init {
-        getMarvelCharacter()
-    }
+
+   /* var marvelData = liveData<CharacterListsModel> {
+
+
+        searchCharacter()
+    }*/
+
     val onListItemClickListener: (position: Int) -> Unit = {
-       /* characterDetail.postValue(
-           // characterInfoMapper.toModel(characterDetailList?.get(it))
+        /*characterDetail.postValue(
+            characterInfoMapper.toModel(characterDetailList?.get(it))
         )*/
     }
 
-    public fun getMarvelCharacter() {
+    val queryTextListener = object : OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            searchCharacter()
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            return true
+        }
+
+    }
+
+    private fun searchCharacter() {
         showSuccess.postValue(false)
         showError.postValue(false)
         showLoading.postValue(true)
         viewModelScope.launch {
-            val response = marvelCharacterListUseCase.executeUseCase(
-                MarvelCharacterListUseCase.MarvelCharacterListRequest()
+            val response = searchCharacterUseCase.executeUseCase(
+                MarvelCharacterListUseCase.MarvelCharacterListRequest(
+                )
             )
             when (response.error) {
                 true -> {
@@ -58,16 +75,16 @@ class HomeViewModel @Inject constructor(
                             showSuccess.postValue(true)
                             showLoading.postValue(false)
                             showError.postValue(false)
-                            characterNameList.postValue(response.characterModel)
-                                //(response.characterModel?.map { it.id },response.characterModel?.map { it.name }))
-                          /*  characterNameList.postValue(
+                           /* characterNameList.postValue(
                                 characterNameMapper.toModel(response.characterModel?.map { it.first }
                                     ?.toList()))
                             characterDetailList = response.characterModel?.map { it.second }*/
                         }
                     }
+
                 }
             }
         }
     }
+
 }

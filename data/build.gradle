@@ -26,17 +26,29 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.8.0"
 
     //hilt
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    testImplementation 'com.google.dagger:hilt-android-testing:2.33-beta'
+    kaptTest 'com.google.dagger:hilt-compiler:2.33-beta'
+
+    //Mockito
+    testImplementation 'org.mockito:mockito-core:3.8.0'
+    testImplementation 'org.mockito:mockito-inline:3.4.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:3.1.0'
 
 }

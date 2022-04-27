@@ -1,6 +1,7 @@
 package com.globant.marvelcharacters.domain.model
 
-class MarvelCharacterDetails(
+data class MarvelCharacterDetails(
+    val id : Int,
     val name: String,
     val thumbnailUrl: String,
     val description: String,

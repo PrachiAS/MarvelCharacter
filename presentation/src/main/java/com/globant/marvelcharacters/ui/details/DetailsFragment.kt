@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.globant.marvelcharacters.R
 import com.globant.marvelcharacters.databinding.FragmentDetailsBinding
@@ -22,6 +23,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel by viewModels<DetailsViewModel>()
     private lateinit var adapter: ComicListAdapter
+    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +48,13 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-           infoModel = it.getParcelable(CHARACTER_DETAIL)
+
+        args.characterId?.let {
+            viewModel.getMarvelCharacterDetails(it)
         }
-        viewModel.init(infoModel)
+
         viewModel.characterDetailsModelLiveData.observe(viewLifecycleOwner){
             binding.characterDetails = it
-            adapter.setList(it?.comicNames)
         }
     }
     companion object {

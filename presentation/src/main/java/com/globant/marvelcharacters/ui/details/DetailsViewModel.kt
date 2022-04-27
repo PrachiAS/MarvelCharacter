@@ -2,9 +2,8 @@ package com.globant.marvelcharacters.ui.details
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.globant.marvelcharacters.mapper.CharacterDetailMapper
-import com.globant.marvelcharacters.model.CharacterDetailsModel
-import com.globant.marvelcharacters.model.CharacterInfoModel
+import com.globant.marvelcharacters.domain.model.MarvelCharacterDetails
+import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
 import com.globant.marvelcharacters.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,11 +11,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val mapper: CharacterDetailMapper
+    private val marvelCharacterDetailsUseCase: MarvelCharacterDetailsUseCase
 ) : BaseViewModel() {
-    var characterDetailsModelLiveData = MutableLiveData<CharacterDetailsModel?>()
+    var characterDetailsModelLiveData = MutableLiveData<MarvelCharacterDetails?>()
 
-    fun init(infoModel: CharacterInfoModel?) {
+    /*fun init(infoModel: CharacterInfoModel?) {
         viewModelScope.launch {
             showLoading.postValue(true)
             infoModel?.let {
@@ -33,6 +32,30 @@ class DetailsViewModel @Inject constructor(
                         availableEvents = it.availableEvents.toString()
                     )
                 )
+            }
+        }
+    }*/
+
+    public fun getMarvelCharacterDetails(id: String) {
+        showSuccess.postValue(false)
+        showError.postValue(false)
+        showLoading.postValue(true)
+        viewModelScope.launch {
+            val response = marvelCharacterDetailsUseCase.executeUseCase(
+                MarvelCharacterDetailsUseCase.MarvelCharacterDetailRequest()
+            )
+            when (response.error) {
+                true -> {
+                    showSuccess.postValue(false)
+                    showError.postValue(true)
+                    showLoading.postValue(false)
+                }
+                false -> {
+                    showSuccess.postValue(true)
+                    showLoading.postValue(false)
+                    showError.postValue(false)
+                    characterDetailsModelLiveData.postValue(response.characterModel)
+                }
             }
         }
     }

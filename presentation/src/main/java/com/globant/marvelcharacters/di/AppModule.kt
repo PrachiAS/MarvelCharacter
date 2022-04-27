@@ -9,8 +9,6 @@ import com.globant.marvelcharacters.domain.repository.MarvelCharacterListReposit
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 import com.globant.marvelcharacters.helper.Constants
 import com.globant.marvelcharacters.helper.GetKeys
-import com.globant.marvelcharacters.mapper.CharacterDetailMapper
-import com.globant.marvelcharacters.mapper.CharacterListMapper
 import com.globant.marvelcharacters.ui.details.DetailsViewModel
 import com.globant.marvelcharacters.ui.home.HomeViewModel
 import dagger.Module
@@ -22,7 +20,6 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import om.globant.marvelcharacters.mapper.CharacterInfoMapper
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton

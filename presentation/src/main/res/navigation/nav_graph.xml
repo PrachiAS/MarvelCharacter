@@ -18,9 +18,10 @@
         android:name="com.globant.marvelcharacters.ui.details.DetailsFragment">
 
         <argument
-            android:name="characterDetailsModel"
-            app:argType="com.globant.marvelcharacters.model.CharacterDetailsModel"
-            app:nullable="true" />
+            android:name="character_id"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </fragment>
 
 </navigation>
