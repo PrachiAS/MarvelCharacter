@@ -5,11 +5,9 @@ import com.globant.marvelcharacters.domain.repository.MarvelCharacterListReposit
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 import javax.inject.Inject
 
-class MarvelCharactersListRepositoryImpl @Inject constructor(
-    private val remoteDataSource: DataSource.RemoteDataSource
-) : MarvelCharacterListRepository {
+class MarvelCharactersListRepositoryImpl @Inject constructor(private val remoteDataSource: DataSource.RemoteDataSource) :
+    MarvelCharacterListRepository {
 
-    override suspend fun getMarvelCharacterList():
-            MarvelCharacterListUseCase.MarvelCharacterListResponse =
+    override suspend fun getMarvelCharacterList(): MarvelCharacterListUseCase.MarvelCharacterListResponse =
         remoteDataSource.getMarvelCharacterList()
 }

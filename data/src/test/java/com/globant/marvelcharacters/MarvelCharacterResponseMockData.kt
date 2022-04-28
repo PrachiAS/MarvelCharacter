@@ -1,9 +1,23 @@
 package com.globant.marvelcharacters
 
-import com.globant.marvelcharacters.data.model.*
+import com.globant.marvelcharacters.data.model.Comics
+import com.globant.marvelcharacters.data.model.Data
+import com.globant.marvelcharacters.data.model.Item
+import com.globant.marvelcharacters.data.model.Events
+import com.globant.marvelcharacters.data.model.Series
+import com.globant.marvelcharacters.data.model.Stories
+import com.globant.marvelcharacters.data.model.MarvelCharactersResponse
+import com.globant.marvelcharacters.data.model.ItemX
+import com.globant.marvelcharacters.data.model.ItemXX
+import com.globant.marvelcharacters.data.model.ItemXXX
+import com.globant.marvelcharacters.data.model.Thumbnail
+import com.globant.marvelcharacters.data.model.Url
+import com.globant.marvelcharacters.data.model.Result
 import com.globant.marvelcharacters.domain.model.MarvelCharacterDetails
 import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
+import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
+
 
 val mockMarvelCharacterListResponse = MarvelCharactersResponse(
     "\"<a href=\\\"http://marvsel.com\\\">Data provided by Marvel.MARVXEL</a>\",",
@@ -120,11 +134,12 @@ val mockMarvelCharacterListResponse = MarvelCharactersResponse(
                 listOf(Url("detail", ""))
             )
         ),
-        2
-    ),
+        2),
     "abcb4bf444a41e6b9849388fb33bd9xyz",
     "ok"
 )
+
+
 
 
 

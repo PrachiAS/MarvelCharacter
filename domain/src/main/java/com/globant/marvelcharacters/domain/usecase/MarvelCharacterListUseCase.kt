@@ -7,7 +7,7 @@ import javax.inject.Inject
 class MarvelCharacterListUseCase @Inject constructor(private val repository: MarvelCharacterListRepository) :
     BaseUseCase<MarvelCharacterListUseCase.MarvelCharacterListRequest, MarvelCharacterListUseCase.MarvelCharacterListResponse>() {
 
-    class MarvelCharacterListRequest() : Request
+    class MarvelCharacterListRequest : Request
 
     class MarvelCharacterListResponse(
         val characterModel: List<MarvelCharacterNameModel>?,

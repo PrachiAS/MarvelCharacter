@@ -1,8 +1,9 @@
 package com.globant.marvelcharacters.ui.home
 
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
-import com.globant.marvelcharacters.mockGetMarvelCharacterListResponse
+
 import com.globant.marvelcharacters.ui.BaseViewModelTest
+import com.globant.marvelcharacters.ui.mockGetMarvelCharacterListResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
@@ -28,13 +29,14 @@ class HomeViewModelTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `onItemClickListener should post id to characterDetails`() {
-        testScope.runBlockingTest {
+    fun `getMarvelCharacter should fetch charcaters list`() {
+        runBlockingTest {
+
             whenever(getMarvelCharacterListUseCase.executeUseCase(any())
-            ).thenReturn(
-                mockGetMarvelCharacterListResponse
-            )
-            assertEquals(viewModel.characterNameList.value, mockGetMarvelCharacterListResponse)
+            ).thenReturn(mockGetMarvelCharacterListResponse)
+
+            viewModel.getMarvelCharacter()
+
             assertEquals(viewModel.showSuccess.value, true)
             assertEquals(viewModel.showError.value, false)
             assertEquals(viewModel.showLoading.value, false)

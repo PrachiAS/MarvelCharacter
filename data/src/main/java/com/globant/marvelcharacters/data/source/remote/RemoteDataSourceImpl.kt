@@ -12,8 +12,7 @@ class RemoteDataSourceImpl @Inject constructor(
     private val remoteService: ApiService,
     private val responseListMapper: MarvelCharacterListResponseMapper,
     private val responseDetailMapper: MarvelCharacterDetailResponseMapper
-) :
-    DataSource.RemoteDataSource {
+) : DataSource.RemoteDataSource {
     override suspend fun getMarvelCharacterList(): MarvelCharacterListUseCase.MarvelCharacterListResponse =
         responseListMapper.toModel(remoteService.getMarvelCharacterList())
 

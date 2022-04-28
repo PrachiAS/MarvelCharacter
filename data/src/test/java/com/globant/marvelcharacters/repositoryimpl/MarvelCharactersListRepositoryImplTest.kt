@@ -16,10 +16,9 @@ import org.mockito.kotlin.whenever
 @ExperimentalCoroutinesApi
 class MarvelCharactersListRepositoryImplTest {
 
-  /*  @Mock
+    @Mock
     private lateinit var remoteDataSource: DataSource.RemoteDataSource
 
-    @Mock
     private lateinit var repository: MarvelCharactersListRepositoryImpl
 
     @Before
@@ -32,23 +31,20 @@ class MarvelCharactersListRepositoryImplTest {
     fun getMarvelCharacterListTest() {
         runBlockingTest {
 
-            repository.getMarvelCharacterList()
-            val mockResponse= mockGetMarvelCharacterListResponse;
-
-            whenever(repository.getMarvelCharacterList()).thenReturn(mockResponse)
+            whenever(remoteDataSource.getMarvelCharacterList()).thenReturn(mockGetMarvelCharacterListResponse)
 
             val response  = repository.getMarvelCharacterList()
 
-            verify(repository).getMarvelCharacterList()
+            verify(remoteDataSource).getMarvelCharacterList()
             Assert.assertEquals(
                 response.characterModel?.first()?.id,
-                mockResponse.characterModel?.first()?.id
+                mockGetMarvelCharacterListResponse.characterModel?.first()?.id
             )
             Assert.assertEquals(
                 response.characterModel?.first()?.name,
-                mockResponse.characterModel?.first()?.name
+                mockGetMarvelCharacterListResponse.characterModel?.first()?.name
             )
-            Assert.assertEquals(mockResponse, response)
+            Assert.assertEquals(mockGetMarvelCharacterListResponse, response)
         }
-    }*/
+    }
 }

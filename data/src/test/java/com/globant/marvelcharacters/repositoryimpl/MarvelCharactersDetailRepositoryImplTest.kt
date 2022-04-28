@@ -16,10 +16,9 @@ import org.mockito.kotlin.whenever
 @ExperimentalCoroutinesApi
 class MarvelCharactersDetailRepositoryImplTest {
 
-   /* @Mock
+    @Mock
     private lateinit var remoteDataSource: DataSource.RemoteDataSource
 
-    @Mock
     private lateinit var repository: MarvelCharactersDetailRepositoryImpl
 
     @Before
@@ -31,26 +30,22 @@ class MarvelCharactersDetailRepositoryImplTest {
     @Test
     fun getMarvelCharacterListTest() {
         runBlockingTest {
-
-            val mockId:String = "101"
-            repository.getMarvelCharacterDetail(mockId)
-            val mockResponse= mockMarvelCharacterDetailsResponse;
-
-            whenever(repository.getMarvelCharacterDetail(mockId)).thenReturn(mockResponse)
+            val mockId = "101"
+            whenever(remoteDataSource.getMarvelCharacterDetails(mockId)).thenReturn(mockMarvelCharacterDetailsResponse)
 
             val response  = repository.getMarvelCharacterDetail(mockId)
 
-            verify(repository).getMarvelCharacterDetail(mockId)
-            Assert.assertEquals(response.characterModel?.id, mockResponse.characterModel?.id)
-            Assert.assertEquals(response.characterModel?.name, mockResponse.characterModel?.name)
-            Assert.assertEquals(response.characterModel?.thumbnailUrl, mockResponse.characterModel?.thumbnailUrl)
-            Assert.assertEquals(response.characterModel?.description, mockResponse.characterModel?.description)
-            Assert.assertEquals(response.characterModel?.availableStories, mockResponse.characterModel?.availableStories)
-            Assert.assertEquals(response.characterModel?.comicNames, mockResponse.characterModel?.comicNames)
-            Assert.assertEquals(response.characterModel?.availableComics, mockResponse.characterModel?.availableComics)
-            Assert.assertEquals(response.characterModel?.availableEvents, mockResponse.characterModel?.availableEvents)
-            Assert.assertEquals(response.characterModel?.availableSeries, mockResponse.characterModel?.availableSeries)
-            Assert.assertEquals(mockResponse, response)
+            verify(remoteDataSource).getMarvelCharacterDetails(mockId)
+            Assert.assertEquals(response.characterModel?.id, mockMarvelCharacterDetailsResponse.characterModel?.id)
+            Assert.assertEquals(response.characterModel?.name, mockMarvelCharacterDetailsResponse.characterModel?.name)
+            Assert.assertEquals(response.characterModel?.thumbnailUrl, mockMarvelCharacterDetailsResponse.characterModel?.thumbnailUrl)
+            Assert.assertEquals(response.characterModel?.description, mockMarvelCharacterDetailsResponse.characterModel?.description)
+            Assert.assertEquals(response.characterModel?.availableStories, mockMarvelCharacterDetailsResponse.characterModel?.availableStories)
+            Assert.assertEquals(response.characterModel?.comicNames, mockMarvelCharacterDetailsResponse.characterModel?.comicNames)
+            Assert.assertEquals(response.characterModel?.availableComics, mockMarvelCharacterDetailsResponse.characterModel?.availableComics)
+            Assert.assertEquals(response.characterModel?.availableEvents, mockMarvelCharacterDetailsResponse.characterModel?.availableEvents)
+            Assert.assertEquals(response.characterModel?.availableSeries, mockMarvelCharacterDetailsResponse.characterModel?.availableSeries)
+            Assert.assertEquals(mockMarvelCharacterDetailsResponse, response)
         }
-    }*/
+    }
 }

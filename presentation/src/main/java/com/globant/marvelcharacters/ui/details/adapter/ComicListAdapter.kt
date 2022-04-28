@@ -7,19 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.globant.marvelcharacters.R
 
-class ComicListAdapter(
-) :
-    RecyclerView.Adapter<ComicListAdapter.ComicNameViewHolder>() {
+class ComicListAdapter : RecyclerView.Adapter<ComicListAdapter.ComicNameViewHolder>() {
     private var comicNameList: List<String>? = emptyList()
-
-    class ComicNameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textViewName)
-    }
-
-    fun setList(list: List<String>?) {
-        comicNameList = list
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicNameViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -34,4 +23,14 @@ class ComicListAdapter(
     override fun getItemCount(): Int {
         return comicNameList?.size ?: 0
     }
+
+    fun setList(list: List<String>?) {
+        comicNameList = list
+        notifyDataSetChanged()
+    }
+
+    class ComicNameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val textView: TextView = view.findViewById(R.id.textViewName)
+    }
+
 }

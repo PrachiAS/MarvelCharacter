@@ -16,21 +16,15 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private lateinit var _binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var marvelCharacterListAdapter: MarvelCharacterListAdapter
-    val binding: FragmentHomeBinding
-        get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false
         )
         return binding.root
@@ -50,9 +44,9 @@ class HomeFragment : Fragment() {
         }
 
         with(viewModel) {
-            characterNameList.observe(viewLifecycleOwner, {
+            characterNameList.observe(viewLifecycleOwner) {
                 marvelCharacterListAdapter.setList(it)
-            })
+            }
         }
         viewModel.getMarvelCharacter()
         marvelCharacterListAdapter.itemClickListener {

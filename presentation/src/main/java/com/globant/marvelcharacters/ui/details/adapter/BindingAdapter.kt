@@ -22,7 +22,7 @@ fun marvelCharacterImage(view: ImageView, thumbnail: String?) {
                 .build()
         )
         val options = RequestOptions.placeholderOf(R.drawable.android_icon).error(R.drawable.error)
-        Glide.with(view).setDefaultRequestOptions(options).load(glideUrl ?: "")
+        Glide.with(view).setDefaultRequestOptions(options).load(glideUrl)
             .skipMemoryCache(true)
             .into(view)
     }

@@ -5,7 +5,6 @@
     tools:context=".ui.home.HomeFragment">
 
     <data>
-
         <variable
             name="view"
             type="android.view.View" />

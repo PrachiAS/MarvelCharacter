@@ -10,13 +10,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val marvelCharacterListUseCase: MarvelCharacterListUseCase
-) :
+class HomeViewModel @Inject constructor(private val marvelCharacterListUseCase: MarvelCharacterListUseCase) :
     BaseViewModel() {
     val characterNameList = MutableLiveData<List<MarvelCharacterNameModel>>()
 
-     fun getMarvelCharacter() {
+    internal fun getMarvelCharacter() {
         showSuccess.postValue(false)
         showError.postValue(false)
         showLoading.postValue(true)

@@ -20,9 +20,6 @@ class MarvelCharacterDetailsUseCaseTest {
 
     private lateinit var useCase: MarvelCharacterDetailsUseCase
 
-    @Mock
-    lateinit var response: MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse
-
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
@@ -34,7 +31,7 @@ class MarvelCharacterDetailsUseCaseTest {
         runBlockingTest {
 
             val mockId = "101"
-            val mockResponse= mockMarvelCharacterDetailsResponse;
+            val mockResponse= mockMarvelCharacterDetailsResponse
             val mockRequest = MarvelCharacterDetailsUseCase.MarvelCharacterDetailRequest(mockId)
 
             whenever(repository.getMarvelCharacterDetail(mockId)).thenReturn(mockResponse)

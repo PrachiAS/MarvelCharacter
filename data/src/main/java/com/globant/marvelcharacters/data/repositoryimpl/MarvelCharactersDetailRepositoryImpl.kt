@@ -5,12 +5,10 @@ import com.globant.marvelcharacters.domain.repository.MarvelCharacterDetailRepos
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
 import javax.inject.Inject
 
-class MarvelCharactersDetailRepositoryImpl @Inject constructor(
-    private val remoteDataSource: DataSource.RemoteDataSource
-) : MarvelCharacterDetailRepository {
+class MarvelCharactersDetailRepositoryImpl @Inject constructor(private val remoteDataSource: DataSource.RemoteDataSource) :
+    MarvelCharacterDetailRepository {
 
-    override suspend fun getMarvelCharacterDetail(id: String): MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse {
-        return remoteDataSource.getMarvelCharacterDetails(id)
-    }
+    override suspend fun getMarvelCharacterDetail(id: String): MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse =
+        remoteDataSource.getMarvelCharacterDetails(id)
 }
 

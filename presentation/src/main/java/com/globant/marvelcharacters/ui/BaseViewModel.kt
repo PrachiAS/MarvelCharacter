@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
-    val showLoading = MutableLiveData<Boolean>(false)
-    val showError = MutableLiveData<Boolean>(false)
-    val showSuccess = MutableLiveData<Boolean>(false)
+    val showLoading = MutableLiveData(false)
+    val showError = MutableLiveData(false)
+    val showSuccess = MutableLiveData(false)
 }
