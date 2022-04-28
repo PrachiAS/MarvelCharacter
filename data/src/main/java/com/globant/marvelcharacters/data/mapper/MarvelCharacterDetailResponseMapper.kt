@@ -1,11 +1,10 @@
 package com.globant.marvelcharacters.data.mapper
 
+import com.globant.marvelcharacters.data.common.DataConstants
 import com.globant.marvelcharacters.data.model.Comics
 import com.globant.marvelcharacters.data.model.MarvelCharactersResponse
 import com.globant.marvelcharacters.domain.model.MarvelCharacterDetails
-import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
-import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 
 class MarvelCharacterDetailResponseMapper :
     ResponseMapper<MarvelCharactersResponse?, MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse> {
@@ -24,7 +23,7 @@ class MarvelCharacterDetailResponseMapper :
                         characterModel = MarvelCharacterDetails(
                             id = this.id,
                             name = this.name,
-                            thumbnailUrl = this.thumbnail.path + "." + this.thumbnail.extension,
+                            thumbnailUrl = this.thumbnail.path + DataConstants.dot + this.thumbnail.extension,
                             description = this.description,
                             availableComics = this.comics.available,
                             comicNames = getComicNames(this.comics),

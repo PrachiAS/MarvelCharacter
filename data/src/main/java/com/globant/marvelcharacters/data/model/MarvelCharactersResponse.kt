@@ -52,6 +52,7 @@ data class Series(
     val items: List<ItemXX>,
     val returned: Int
 )
+
 data class Stories(
     val available: Int,
     val collectionURI: String,
@@ -68,10 +69,12 @@ data class Url(
     val type: String,
     val url: String
 )
+
 data class Item(
     val name: String,
     val resourceURI: String
 )
+
 data class ItemX(
     val name: String,
     val resourceURI: String

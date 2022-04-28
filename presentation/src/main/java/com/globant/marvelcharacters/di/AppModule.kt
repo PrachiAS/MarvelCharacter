@@ -1,11 +1,15 @@
 package com.globant.marvelcharacters.di
 
 import com.globant.marvelcharacter.data.source.remote.service.ApiService
+import com.globant.marvelcharacters.data.mapper.MarvelCharacterDetailResponseMapper
 import com.globant.marvelcharacters.data.mapper.MarvelCharacterListResponseMapper
+import com.globant.marvelcharacters.data.repositoryimpl.MarvelCharactersDetailRepositoryImpl
 import com.globant.marvelcharacters.data.repositoryimpl.MarvelCharactersListRepositoryImpl
 import com.globant.marvelcharacters.data.source.DataSource
 import com.globant.marvelcharacters.data.source.remote.RemoteDataSourceImpl
+import com.globant.marvelcharacters.domain.repository.MarvelCharacterDetailRepository
 import com.globant.marvelcharacters.domain.repository.MarvelCharacterListRepository
+import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 import com.globant.marvelcharacters.helper.Constants
 import com.globant.marvelcharacters.helper.GetKeys
@@ -63,51 +67,53 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRemoteDataSource(apiService: ApiService): DataSource.RemoteDataSource =
-        RemoteDataSourceImpl(apiService)
+    fun provideRemoteDataSource(apiService: ApiService,responseListMapper: MarvelCharacterListResponseMapper,
+                                responseDetailMapper: MarvelCharacterDetailResponseMapper): DataSource.RemoteDataSource =
+        RemoteDataSourceImpl(apiService,responseListMapper,responseDetailMapper)
+
 
     @Singleton
     @Provides
     fun provideMarvelCharacterListResponseMapper() = MarvelCharacterListResponseMapper()
+    @Singleton
+
+    @Provides
+    fun provideMarvelCharacterDetailsResponseMapper() = MarvelCharacterDetailResponseMapper()
 
     @Singleton
     @Provides
     fun provideMarvelCharacterRepository(
-        remoteDataSource: DataSource.RemoteDataSource, responseMapper: MarvelCharacterListResponseMapper
+        remoteDataSource: DataSource.RemoteDataSource,
+      //  responseMapper: MarvelCharacterListResponseMapper
     ): MarvelCharacterListRepository =
-        MarvelCharactersListRepositoryImpl(responseMapper, remoteDataSource)
+        MarvelCharactersListRepositoryImpl(remoteDataSource)
+
+    @Singleton
+    @Provides
+    fun provideMarvelCharacterDetailsRepository(
+        remoteDataSource: DataSource.RemoteDataSource,
+      //  responseMapper: MarvelCharacterDetailResponseMapper
+    ): MarvelCharacterDetailRepository =
+        MarvelCharactersDetailRepositoryImpl(remoteDataSource)
 
     @Singleton
     @Provides
     fun provideMarvelCharacterUseCase(repository: MarvelCharacterListRepository): MarvelCharacterListUseCase =
         MarvelCharacterListUseCase(repository)
 
-    @Singleton
-    @Provides
-    fun provideCharacterDetailModelMapper() = CharacterInfoMapper()
-
-    @Singleton
-    @Provides
-    fun provideCharacterNameModelMapper() = CharacterListMapper()
-
-    @Singleton
-    @Provides
-    fun provideCharacterDetailMapper() = CharacterDetailMapper()
 
     @Singleton
     @Provides
     fun provideHomeViewModel(
-        searchCharacterUseCase: MarvelCharacterListUseCase,
-        characterInfoMapper: CharacterInfoMapper,
-        characterNameMapper: CharacterListMapper
+        searchCharacterUseCase: MarvelCharacterListUseCase
     ): HomeViewModel =
-        HomeViewModel(searchCharacterUseCase, characterInfoMapper, characterNameMapper)
+        HomeViewModel(searchCharacterUseCase)
 
     @Provides
     fun provideDetailsViewModel(
-        characterDetailMapper: CharacterDetailMapper
+        searchCharacterUseCase: MarvelCharacterDetailsUseCase
     ): DetailsViewModel =
         DetailsViewModel(
-            characterDetailMapper
+            searchCharacterUseCase
         )
 }

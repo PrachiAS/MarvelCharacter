@@ -5,10 +5,13 @@
     tools:context=".ui.details.DetailsFragment">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="view"
             type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.globant.marvelcharacters.ui.details.DetailsViewModel" />
@@ -20,16 +23,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_0"
@@ -61,12 +64,12 @@
                     android:id="@+id/textDescriptionHeading"
                     android:layout_width="@dimen/margin_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/description"
                     android:textSize="@dimen/font_size_20"
-                    android:layout_marginTop="@dimen/margin_5"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/marvelCharacterImg"  />
+                    app:layout_constraintTop_toBottomOf="@+id/marvelCharacterImg" />
 
                 <TextView
                     android:id="@+id/textDescription"
@@ -129,13 +132,12 @@
                     android:id="@+id/recyclerViewComicList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_50"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textComicNamesHeading"
-                    android:paddingBottom="@dimen/margin_50"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/textComicNamesHeading" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

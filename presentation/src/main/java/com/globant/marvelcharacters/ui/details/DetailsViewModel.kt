@@ -15,34 +15,13 @@ class DetailsViewModel @Inject constructor(
 ) : BaseViewModel() {
     var characterDetailsModelLiveData = MutableLiveData<MarvelCharacterDetails?>()
 
-    /*fun init(infoModel: CharacterInfoModel?) {
-        viewModelScope.launch {
-            showLoading.postValue(true)
-            infoModel?.let {
-                showLoading.postValue(false)
-                characterDetailsModelLiveData.postValue(
-                    mapper.toModel(
-                        name = it.name.toString(),
-                        thumbnailUrl = it.thumbnailUrl.toString(),
-                        description= it.description.toString(),
-                        availableComics = "".plus(it.availableComics),
-                        comicNames = it.comicNames,
-                        availableSeries = it.availableSeries.toString(),
-                        availableStories = it.availableStories.toString(),
-                        availableEvents = it.availableEvents.toString()
-                    )
-                )
-            }
-        }
-    }*/
-
-    public fun getMarvelCharacterDetails(id: String) {
+    fun getMarvelCharacterDetails(id: String) {
         showSuccess.postValue(false)
         showError.postValue(false)
         showLoading.postValue(true)
         viewModelScope.launch {
             val response = marvelCharacterDetailsUseCase.executeUseCase(
-                MarvelCharacterDetailsUseCase.MarvelCharacterDetailRequest()
+                MarvelCharacterDetailsUseCase.MarvelCharacterDetailRequest(id)
             )
             when (response.error) {
                 true -> {

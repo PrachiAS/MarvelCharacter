@@ -16,62 +16,51 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var _binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var adapter: MarvelCharacterListAdapter
-    var bundle: Bundle = Bundle()
+    private lateinit var marvelCharacterListAdapter: MarvelCharacterListAdapter
+    val binding: FragmentHomeBinding
+        get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val onItemClickListener: (position: Int) -> Unit = {
-            viewModel.onListItemClickListener(it)
-        }
-        adapter = MarvelCharacterListAdapter(onItemClickListener)
-        with(viewModel) {
-            characterNameList.observe(this@HomeFragment, {
-                adapter.setList(it)
-            })
-            /*characterDetail.observe(this@HomeFragment, {
-                bundle.putParcelable(CHARACTER_DETAIL, it)
-                navigateToDetails(it)
-            })*/
-        }
-        viewModel.getMarvelCharacter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
+        _binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false
         )
-        with(binding) {
-            lifecycleOwner = this@HomeFragment
-            viewModel = this@HomeFragment.viewModel
-            recyclerViewCharacterList.adapter = adapter
-            recyclerViewCharacterList.layoutManager =
-                LinearLayoutManager(recyclerViewCharacterList.context)
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter.itemClickListener {
+        marvelCharacterListAdapter = MarvelCharacterListAdapter()
+        binding.recyclerViewCharacterList.apply {
+            adapter = marvelCharacterListAdapter
+        }
+
+        with(binding) {
+            lifecycleOwner = this@HomeFragment
+            viewModel = this@HomeFragment.viewModel
+            recyclerViewCharacterList.layoutManager =
+                LinearLayoutManager(recyclerViewCharacterList.context)
+        }
+
+        with(viewModel) {
+            characterNameList.observe(viewLifecycleOwner, {
+                marvelCharacterListAdapter.setList(it)
+            })
+        }
+        viewModel.getMarvelCharacter()
+        marvelCharacterListAdapter.itemClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.navigateToDetailsFragment(
                     it.id.toString()
                 )
             )
         }
-    }
-    private fun navigateToDetails(bundle: Bundle) {
-        findNavController().navigate(
-            HomeFragmentDirections.navigateToDetailsFragment()
-        )
-    }
-
-    companion object {
-        private const val CHARACTER_DETAIL = "CHARACTER_DETAIL"
     }
 }

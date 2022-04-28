@@ -1,6 +1,5 @@
 package com.globant.marvelcharacters.domain.usecase
 
-import com.globant.marvelcharacters.domain.model.MarvelCharacterDetails
 import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
 import com.globant.marvelcharacters.domain.repository.MarvelCharacterListRepository
 import javax.inject.Inject
