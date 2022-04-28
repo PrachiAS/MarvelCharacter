@@ -19,7 +19,7 @@ import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 
 
-val mockMarvelCharacterListResponse = MarvelCharactersResponse(
+val mockMarvelCharacterListDataResponse = MarvelCharactersResponse(
     "\"<a href=\\\"http://marvsel.com\\\">Data provided by Marvel.MARVXEL</a>\",",
     "\"Data provided by Marvel. MARXVEL\"",
     200,
@@ -50,9 +50,9 @@ val mockMarvelCharacterListResponse = MarvelCharactersResponse(
                     ),
                     2
                 ),
-                5,
+                1,
                 "2013-09-18T15:54:04-0400",
-                "A-Bomb (HAS)",
+                "abc",
                 "http://gateway.marvel.com/v1/public/characters/5",
                 Series(
                     4,
@@ -139,6 +139,28 @@ val mockMarvelCharacterListResponse = MarvelCharactersResponse(
     "ok"
 )
 
+
+val mockGetMarvelCharacterListResponse = MarvelCharacterListUseCase.MarvelCharacterListResponse(
+    characterModel = listOf(
+        MarvelCharacterNameModel(1, "abc"),
+        MarvelCharacterNameModel(2, "abcde")
+    )
+)
+
+val mockMarvelCharacterDetailsResponse =
+    MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse(
+        characterModel = MarvelCharacterDetails(
+            id = 5,
+            name = "abc",
+            thumbnailUrl = "http://thumbnail.url.jpg",
+            description = "This is dummy data",
+            availableComics = 4,
+            comicNames = listOf("ABC", "XYZ"),
+            availableSeries = 5,
+            availableStories = 3,
+            availableEvents = 2
+        )
+    )
 
 
 
