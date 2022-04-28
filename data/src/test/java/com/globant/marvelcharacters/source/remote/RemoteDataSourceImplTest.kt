@@ -6,6 +6,14 @@ import com.globant.marvelcharacters.data.mapper.MarvelCharacterListResponseMappe
 import com.globant.marvelcharacters.data.source.remote.RemoteDataSourceImpl
 import com.globant.marvelcharacters.mockMarvelCharacterListResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class RemoteDataSourceImplTest {
