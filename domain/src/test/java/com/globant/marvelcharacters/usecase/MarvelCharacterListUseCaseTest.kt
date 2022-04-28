@@ -1,13 +1,18 @@
 package com.globant.marvelcharacters.usecase
 
+import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
 import com.globant.marvelcharacters.domain.repository.MarvelCharacterListRepository
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
+import com.globant.marvelcharacters.mockGetMarvelCharacterListResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -16,9 +21,6 @@ class MarvelCharacterListUseCaseTest {
     private lateinit var repository: MarvelCharacterListRepository
 
     private lateinit var useCase: MarvelCharacterListUseCase
-
-    @Mock
-    private lateinit var request: MarvelCharacterListUseCase.MarvelCharacterListRequest
 
     @Mock
     lateinit var response: MarvelCharacterListUseCase.MarvelCharacterListResponse
@@ -32,10 +34,16 @@ class MarvelCharacterListUseCaseTest {
     @Test
     fun `executeUseCase should call repository`() {
         runBlockingTest {
-            useCase.executeUseCase(request)
-            whenever(repository.getMarvelCharacterList()).thenReturn(
-                response
-            )
+            val mockResponse= mockGetMarvelCharacterListResponse;
+            val mockRequest = MarvelCharacterListUseCase.MarvelCharacterListRequest()
+
+            whenever(repository.getMarvelCharacterList()).thenReturn(mockResponse)
+
+            val response  = useCase.executeUseCase(mockRequest)
+            verify(repository).getMarvelCharacterList()
+            assertEquals(response.characterModel?.first()?.id,mockResponse.characterModel?.first()?.id )
+            assertEquals(response.characterModel?.first()?.name,mockResponse.characterModel?.first()?.name )
+            assertEquals(mockResponse, response)
         }
     }
 }
