@@ -1,12 +1,10 @@
 package com.globant.marvelcharacters.usecase
 
-import com.globant.marvelcharacters.domain.model.MarvelCharacterNameModel
 import com.globant.marvelcharacters.domain.repository.MarvelCharacterListRepository
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
 import com.globant.marvelcharacters.mockGetMarvelCharacterListResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

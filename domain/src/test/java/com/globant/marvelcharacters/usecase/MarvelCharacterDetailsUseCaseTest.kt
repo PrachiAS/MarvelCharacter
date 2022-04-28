@@ -1,10 +1,7 @@
 package com.globant.marvelcharacters.usecase
 
 import com.globant.marvelcharacters.domain.repository.MarvelCharacterDetailRepository
-import com.globant.marvelcharacters.domain.repository.MarvelCharacterListRepository
 import com.globant.marvelcharacters.domain.usecase.MarvelCharacterDetailsUseCase
-import com.globant.marvelcharacters.domain.usecase.MarvelCharacterListUseCase
-import com.globant.marvelcharacters.mockGetMarvelCharacterListResponse
 import com.globant.marvelcharacters.mockMarvelCharacterDetailsResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
