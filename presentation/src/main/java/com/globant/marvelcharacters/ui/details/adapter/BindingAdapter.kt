@@ -16,9 +16,9 @@ fun marvelCharacterImage(view: ImageView, thumbnail: String?) {
         val glideUrl = GlideUrl(
             thumbnail,
             LazyHeaders.Builder()
-                .addHeader(Constants.timestamp, GetKeys.getTimestamp())
-                .addHeader(Constants.apikey, GetKeys.getApiKey())
-                .addHeader(Constants.hash, GetKeys.getMD5Hash())
+                .addHeader(Constants.TIMESTAMP, GetKeys.getTimestamp())
+                .addHeader(Constants.APIKEY, GetKeys.getApiKey())
+                .addHeader(Constants.HASH, GetKeys.getMD5Hash())
                 .build()
         )
         val options = RequestOptions.placeholderOf(R.drawable.android_icon).error(R.drawable.error)

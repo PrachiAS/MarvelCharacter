@@ -23,7 +23,7 @@ class MarvelCharacterDetailResponseMapper :
                         characterModel = MarvelCharacterDetails(
                             id = this.id,
                             name = this.name,
-                            thumbnailUrl = this.thumbnail.path + DataConstants.dot + this.thumbnail.extension,
+                            thumbnailUrl = this.thumbnail.path + DataConstants.DOT + this.thumbnail.extension,
                             description = this.description,
                             availableComics = this.comics.available,
                             comicNames = getComicNames(this.comics),

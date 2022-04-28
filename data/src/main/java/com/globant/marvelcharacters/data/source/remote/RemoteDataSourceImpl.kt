@@ -17,7 +17,6 @@ class RemoteDataSourceImpl @Inject constructor(
     override suspend fun getMarvelCharacterList(): MarvelCharacterListUseCase.MarvelCharacterListResponse =
         responseListMapper.toModel(remoteService.getMarvelCharacterList())
 
-
     override suspend fun getMarvelCharacterDetails(id: String): MarvelCharacterDetailsUseCase.MarvelCharacterDetailResponse =
         responseDetailMapper.toModel(remoteService.getMarvelCharacterDetails(id))
 }

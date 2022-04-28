@@ -10,7 +10,6 @@ import com.globant.marvelcharacters.R
 class ComicListAdapter(
 ) :
     RecyclerView.Adapter<ComicListAdapter.ComicNameViewHolder>() {
-
     private var comicNameList: List<String>? = emptyList()
 
     class ComicNameViewHolder(view: View) : RecyclerView.ViewHolder(view) {

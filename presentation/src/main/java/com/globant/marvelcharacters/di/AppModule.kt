@@ -35,7 +35,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(Constants.Url)
+        .baseUrl(Constants.URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -48,9 +48,9 @@ object AppModule {
             val original = chain.request()
             val httpUrl: HttpUrl = original.url
             val newhttpUrl: HttpUrl = httpUrl.newBuilder()
-                .addQueryParameter(Constants.timestamp, GetKeys.getTimestamp())
-                .addQueryParameter(Constants.apikey, GetKeys.getApiKey())
-                .addQueryParameter(Constants.hash, GetKeys.getMD5Hash())
+                .addQueryParameter(Constants.TIMESTAMP, GetKeys.getTimestamp())
+                .addQueryParameter(Constants.APIKEY, GetKeys.getApiKey())
+                .addQueryParameter(Constants.HASH, GetKeys.getMD5Hash())
                 .build()
             val requestBuilder: Request.Builder = original.newBuilder().url(newhttpUrl)
             val request: Request = requestBuilder.build()
@@ -71,7 +71,6 @@ object AppModule {
                                 responseDetailMapper: MarvelCharacterDetailResponseMapper): DataSource.RemoteDataSource =
         RemoteDataSourceImpl(apiService,responseListMapper,responseDetailMapper)
 
-
     @Singleton
     @Provides
     fun provideMarvelCharacterListResponseMapper() = MarvelCharacterListResponseMapper()
@@ -84,7 +83,6 @@ object AppModule {
     @Provides
     fun provideMarvelCharacterRepository(
         remoteDataSource: DataSource.RemoteDataSource,
-      //  responseMapper: MarvelCharacterListResponseMapper
     ): MarvelCharacterListRepository =
         MarvelCharactersListRepositoryImpl(remoteDataSource)
 
@@ -92,7 +90,6 @@ object AppModule {
     @Provides
     fun provideMarvelCharacterDetailsRepository(
         remoteDataSource: DataSource.RemoteDataSource,
-      //  responseMapper: MarvelCharacterDetailResponseMapper
     ): MarvelCharacterDetailRepository =
         MarvelCharactersDetailRepositoryImpl(remoteDataSource)
 
@@ -100,7 +97,6 @@ object AppModule {
     @Provides
     fun provideMarvelCharacterUseCase(repository: MarvelCharacterListRepository): MarvelCharacterListUseCase =
         MarvelCharacterListUseCase(repository)
-
 
     @Singleton
     @Provides
